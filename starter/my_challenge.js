@@ -45,8 +45,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // Change player IF two SIX in a throw
         if (dice1 === 6 && dice2 === 6) {
             console.log('player ' + activePlayer + ' had two SIX in a throw');
-            scores[activePlayer] = 0;
-            document.getElementById('score-' + activePlayer).textContent = '0';
+            setScoreZero();
             nextPlayer();
             return;
         }
@@ -59,8 +58,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // Change player and set score zero IF second SIX in a row
         if (diceScoresSix === 2) {
             console.log('player ' + activePlayer + ' had two SIX in a row');
-            scores[activePlayer] = 0;
-            document.getElementById('score-' + activePlayer).textContent = '0';
+            setScoreZero();
             nextPlayer();
             return;
         }
@@ -68,8 +66,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // Change player and set score zero IF one dice is ONE
         if (dice1 === 1 || dice2 === 1) {
             console.log('player ' + activePlayer + ' had ONE');
-            scores[activePlayer] = 0;
-            document.getElementById('score-' + activePlayer).textContent = '0';
+            setScoreZero();
             nextPlayer();
             return;
         }
@@ -100,6 +97,11 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     }
 });
 
+function setScoreZero() {
+    scores[activePlayer] = 0;
+    document.getElementById('score-' + activePlayer).textContent = '0';
+};
+
 function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
@@ -112,7 +114,7 @@ function nextPlayer() {
     document.querySelector('.player-1-panel').classList.toggle('active');
 
     document.querySelector('.dice-container').style.display = 'none';
-}
+};
 
 // remember not to use the function call () when adding listener
 //or the function will be imediatelly called without the event
