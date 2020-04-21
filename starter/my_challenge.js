@@ -16,7 +16,7 @@ Change the game to follow these rules:
 */
 
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, diceScoresSix;
 
 init();
 
@@ -32,11 +32,26 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 
         // Update the round score IF the rolled number was NOT a 1
         if (dice !== 1) {
+            // Increase SIX counter
+            if (dice === 6) {
+                diceScoresSix += 1;
+                console.log(diceScoresSix);
+            }
+
+            // Change player IF second SIX in a row
+            if (diceScoresSix === 2) {
+                console.log('player ' + activePlayer + ' had two SIX in a row');
+                nextPlayer();
+                return;
+            }
+
             // Add score
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
+
         } else {
             //Next player
+            console.log('player ' + activePlayer + ' had ONE');
             nextPlayer();
         }
     }
@@ -65,6 +80,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 function nextPlayer() {
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+    diceScoresSix = 0;
 
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
@@ -84,6 +100,7 @@ function init() {
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
+    diceScoresSix = 0;
 
     document.querySelector('.dice').style.display = 'none';
 
