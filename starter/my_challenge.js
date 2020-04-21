@@ -35,12 +35,13 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
             // Increase SIX counter
             if (dice === 6) {
                 diceScoresSix += 1;
-                console.log(diceScoresSix);
             }
 
             // Change player IF second SIX in a row
             if (diceScoresSix === 2) {
                 console.log('player ' + activePlayer + ' had two SIX in a row');
+                scores[activePlayer] = 0;
+                document.getElementById('score-' + activePlayer).textContent = '0';
                 nextPlayer();
                 return;
             }
