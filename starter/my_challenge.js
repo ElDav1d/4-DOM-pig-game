@@ -72,7 +72,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         // Check if player won the game
         if (scores[activePlayer] >= winningScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
-            document.querySelector('.dice').style.display = 'none';
+            // document.querySelector('.dice-container').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -94,7 +94,7 @@ function nextPlayer() {
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
 
-    document.querySelector('.dice').style.display = 'none';
+    // document.querySelector('.dice-container').style.display = 'none';
 }
 
 // remember not to use the function call () when adding listener
@@ -111,7 +111,7 @@ function init() {
     winningScoreDisplay = document.getElementById('winningScoreDisplay');
     winningScoreInput = document.getElementById('winningScoreInput');
 
-    document.querySelector('.dice').style.display = 'none';
+    // document.querySelector('.dice-container').style.display = 'none';
 
     winningScoreDisplay.textContent = winningScore;
     winningScoreInput.value = winningScore;
