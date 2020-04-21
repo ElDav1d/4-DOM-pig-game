@@ -152,3 +152,18 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+
+/**********************************************
+*** WINNING SCORE INPUT
+**********************************************/
+.input-container {
+    background-color: white;
+    margin: 2.5rem;
+    text-align: center;
+}
+
+.input-wrapper {
+    padding: 2.5rem;
+    text-align: center;
+}

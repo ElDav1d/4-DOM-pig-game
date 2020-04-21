@@ -16,9 +16,14 @@ Change the game to follow these rules:
 */
 
 
-var scores, roundScore, activePlayer, gamePlaying, diceScoresSix;
+var scores, roundScore, activePlayer, gamePlaying, diceScoresSix, winningScore, winningScoreInput, winningScoreDisplay;
 
 init();
+
+winningScoreInput.addEventListener('change', function () {
+    winningScore = winningScoreInput.value;
+    winningScoreDisplay.textContent = winningScore;
+});
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if (gamePlaying) {
@@ -65,7 +70,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         // Update the UI
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         // Check if player won the game
-        if (scores[activePlayer] >= 100) {
+        if (scores[activePlayer] >= winningScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -102,9 +107,14 @@ function init() {
     activePlayer = 0;
     roundScore = 0;
     diceScoresSix = 0;
+    winningScore = 100;
+    winningScoreDisplay = document.getElementById('winningScoreDisplay');
+    winningScoreInput = document.getElementById('winningScoreInput');
 
     document.querySelector('.dice').style.display = 'none';
 
+    winningScoreDisplay.textContent = winningScore;
+    winningScoreInput.value = winningScore;
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = '0';
