@@ -28,7 +28,7 @@ winningScoreInput.addEventListener('change', function () {
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if (gamePlaying) {
         // 1. Random Number
-        function rollDice() {
+        var rollDice = function () {
             return Math.floor(Math.random() * 6) + 1;
         }
 
@@ -42,31 +42,41 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         diceDOM1.src = 'dice-' + dice1 + '.png';
         diceDOM2.src = 'dice-' + dice2 + '.png';
 
-        // Update the round score IF the rolled number was NOT a 1
-        if (dice1 !== 1) {
-            // Increase SIX counter
-            if (dice1 === 6) {
-                diceScoresSix += 1;
-            }
-
-            // Change player IF second SIX in a row
-            if (diceScoresSix === 2) {
-                console.log('player ' + activePlayer + ' had two SIX in a row');
-                scores[activePlayer] = 0;
-                document.getElementById('score-' + activePlayer).textContent = '0';
-                nextPlayer();
-                return;
-            }
-
-            // Add score
-            roundScore += dice1 + dice2;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
-
-        } else {
-            //Next player
-            console.log('player ' + activePlayer + ' had ONE');
+        // Change player IF two SIX in a throw
+        if (dice1 === 6 && dice2 === 6) {
+            console.log('player ' + activePlayer + ' had two SIX in a throw');
+            scores[activePlayer] = 0;
+            document.getElementById('score-' + activePlayer).textContent = '0';
             nextPlayer();
+            return;
         }
+
+        // Increase SIX counter
+        if (dice1 === 6 || dice2 === 6) {
+            diceScoresSix += 1;
+        }
+
+        // Change player and set score zero IF second SIX in a row
+        if (diceScoresSix === 2) {
+            console.log('player ' + activePlayer + ' had two SIX in a row');
+            scores[activePlayer] = 0;
+            document.getElementById('score-' + activePlayer).textContent = '0';
+            nextPlayer();
+            return;
+        }
+
+        // Change player and set score zero IF one dice is ONE
+        if (dice1 === 1 || dice2 === 1) {
+            console.log('player ' + activePlayer + ' had ONE');
+            scores[activePlayer] = 0;
+            document.getElementById('score-' + activePlayer).textContent = '0';
+            nextPlayer();
+            return;
+        }
+
+        // Add score TO ROUNDSCORE
+        roundScore += dice1 + dice2;
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
     }
 });
 
