@@ -16,7 +16,7 @@ Change the game to follow these rules:
 */
 
 
-var scores, roundScore, activePlayer, gamePlaying, diceScoresSix, winningScore, winningScoreInput, winningScoreDisplay;
+var scores, roundScore, activePlayer, gamePlaying, diceScoresSix, winningScore, winningScoreInput, winningScoreDisplay, diceContainer, playerZeroPanel, playerOnePanel, currentScoreZero, currentScoreOne;
 
 init();
 
@@ -36,11 +36,9 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         var dice2 = rollDice();
 
         // 2. Display the result
-        document.querySelector('.dice-container').style.display = 'block';
-        var diceDOM1 = document.getElementById('diceOne');
-        var diceDOM2 = document.getElementById('diceTwo');
-        diceDOM1.src = 'dice-' + dice1 + '.png';
-        diceDOM2.src = 'dice-' + dice2 + '.png';
+        diceContainer.classList.add('dice-container-active');
+        document.getElementById('diceOne').src = 'dice-' + dice1 + '.png';
+        document.getElementById('diceTwo').src = 'dice-' + dice2 + '.png';
 
         // Change player IF two SIX in a throw
         if (dice1 === 6 && dice2 === 6) {
@@ -86,7 +84,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         // Check if player won the game
         if (scores[activePlayer] >= winningScore) {
             document.querySelector('#name-' + activePlayer).textContent = 'WINNER!';
-            document.querySelector('.dice-container').style.display = 'none';
+            diceContainer.classList.remove('dice-container-active');
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -107,13 +105,13 @@ function nextPlayer() {
     roundScore = 0;
     diceScoresSix = 0;
 
-    document.getElementById('current-0').textContent = '0';
-    document.getElementById('current-1').textContent = '0';
+    currentScoreZero.textContent = '0';
+    currentScoreOne.textContent = '0';
 
-    document.querySelector('.player-0-panel').classList.toggle('active');
-    document.querySelector('.player-1-panel').classList.toggle('active');
+    playerZeroPanel.classList.toggle('active');
+    playerOnePanel.classList.toggle('active');
 
-    document.querySelector('.dice-container').style.display = 'none';
+    diceContainer.classList.remove('dice-container-active');
 };
 
 // remember not to use the function call () when adding listener
@@ -129,20 +127,24 @@ function init() {
     winningScore = 100;
     winningScoreDisplay = document.getElementById('winningScoreDisplay');
     winningScoreInput = document.getElementById('winningScoreInput');
+    diceContainer = document.getElementById('diceContainer');
+    playerZeroPanel = document.querySelector('.player-0-panel');
+    playerOnePanel = document.querySelector('.player-1-panel');
+    currentScoreZero = document.getElementById('current-0');
+    currentScoreOne = document.getElementById('current-1');
 
-    document.querySelector('.dice-container').style.display = 'none';
-
+    diceContainer.classList.remove('dice-container-active');
     winningScoreDisplay.textContent = winningScore;
     winningScoreInput.value = winningScore;
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
-    document.getElementById('current-0').textContent = '0';
-    document.getElementById('current-1').textContent = '0';
+    currentScoreZero.textContent = '0';
+    currentScoreOne.textContent = '0';
     document.getElementById('name-0').textContent = 'Player 1';
     document.getElementById('name-1').textContent = 'Player 2';
-    document.querySelector('.player-0-panel').classList.remove('winner');
-    document.querySelector('.player-1-panel').classList.remove('winner');
-    document.querySelector('.player-0-panel').classList.remove('active');
-    document.querySelector('.player-1-panel').classList.remove('active');
-    document.querySelector('.player-0-panel').classList.add('active');
+    playerZeroPanel.classList.remove('winner');
+    playerOnePanel.classList.remove('winner');
+    playerZeroPanel.classList.remove('active');
+    playerOnePanel.classList.remove('active');
+    playerZeroPanel.classList.add('active');
 };

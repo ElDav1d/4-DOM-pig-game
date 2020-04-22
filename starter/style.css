@@ -142,6 +142,11 @@ i {
 .btn-hold { top: 467px;}
 
 .dice-container {
+    display: none;
+}
+
+.dice-container-active {
+    display: block;
     padding: 2rem;
     position: absolute;
     left: 50%;
@@ -149,6 +154,7 @@ i {
     transform: translateX(-50%);
     background-color: white;
 }
+
 
 .dice {
     display: block;
