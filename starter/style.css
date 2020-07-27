@@ -186,4 +186,7 @@ i {
 .input-wrapper h3 {
     margin-bottom: .75rem;
 }
+
+.input-wrapper input {
+    margin-bottom: .75rem;
 }
