@@ -183,7 +183,6 @@ i {
     text-align: center;
 }
 
-.input-wrapper h3, 
-.input-wrapper input {
+.input-spacing {
     margin-bottom: .75rem;
 }
