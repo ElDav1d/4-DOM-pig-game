@@ -182,3 +182,7 @@ i {
     padding: 2.5rem;
     text-align: center;
 }
+
+.input-spacing {
+    margin-bottom: .75rem;
+}
