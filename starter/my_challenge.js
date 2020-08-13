@@ -116,7 +116,7 @@ function nextPlayer() {
 
 // remember not to use the function call () when adding listener
 //or the function will be imediatelly called without the event
-document.querySelector('.btn-new').addEventListener('click', init);
+document.querySelector('.btn-new-game').addEventListener('click', init);
 
 function init() {
     gamePlaying = true;

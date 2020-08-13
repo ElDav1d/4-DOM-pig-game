@@ -137,9 +137,9 @@ i {
     transition: margin 0.3s;
 }
 
-.btn-new { top: 45px;}
-.btn-roll { top: 403px;}
-.btn-hold { top: 467px;}
+.btn-new-game { top: 260px;}
+.btn-roll { top: 600px;}
+.btn-hold { top: 650px;}
 
 .dice-container {
     display: none;
@@ -150,7 +150,7 @@ i {
     padding: 2rem;
     position: absolute;
     left: 50%;
-    top: 100px;
+    top: 325px;
     transform: translateX(-50%);
     background-color: white;
 }
@@ -172,9 +172,12 @@ i {
 /**********************************************
 *** WINNING SCORE INPUT
 **********************************************/
+h1, h3 {
+    color: #fff;
+}
+
 .input-container {
-    background-color: white;
-    margin: 2.5rem;
+    background-color: #EB4D4D;
     text-align: center;
 }
 
@@ -183,6 +186,12 @@ i {
     text-align: center;
 }
 
-.input-spacing {
+.input-title {
+    margin-bottom: 1rem;
+}
+
+.input-field {
     margin-bottom: .75rem;
+    border: none;
+    padding: 0.3rem;
 }
