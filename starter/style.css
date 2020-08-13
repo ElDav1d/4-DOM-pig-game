@@ -186,7 +186,11 @@ h1, h3 {
     text-align: center;
 }
 
-.input-spacing {
+.input-title {
+    margin-bottom: 1rem;
+}
+
+.input-field {
     margin-bottom: .75rem;
     border: none;
     padding: 0.3rem;
